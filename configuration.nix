@@ -2,7 +2,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
       ./scripts.nix
       ./packages.nix
@@ -22,7 +22,7 @@
 
   virtualisation.docker.enable = true;
 
-  nixpkgs.config.allowUnfree = true;  
+  nixpkgs.config.allowUnfree = true;
 
   services.xserver.layout = "gb";
   services.xserver.xkbOptions = "eurosign:e,compose:rctrl";

@@ -67,7 +67,6 @@
     BROWSER = "firefox";
     LESS = "--RAW-CONTROL-CHARS --mouse -Ri";
     RIPGREP_CONFIG_PATH = "$XDG_CONFIG_HOME/ripgrep/ripgreprc";
-    SUDO_PROMPT = "$'\e[35m[sudo]\e[33m password for %p:\e[0m '";
     FZF_DEFAULT_COMMAND = "fd --type f --follow --hidden -E'.git'";
     FZF_DEFAULT_OPTS = "--height 40% --bind 'tab:down' --bind 'btab:up' --bind 'ctrl-s:toggle'";
   };
