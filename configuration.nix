@@ -23,6 +23,10 @@
   virtualisation.docker.enable = true;
 
   nixpkgs.config.allowUnfree = true;
+  nix.package = pkgs.nixUnstable;
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
 
   services.xserver.layout = "gb";
   services.xserver.xkbOptions = "eurosign:e,compose:rctrl";
@@ -39,6 +43,9 @@
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
+    ipafont
+    source-sans-pro
+    source-serif-pro
   ];
 
   services.printing.enable = false;
