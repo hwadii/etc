@@ -11,7 +11,7 @@ in
     wget sxhkd sway wlroots wofi thunderbird firefox-devedition-bin zsh docker
     git youtube-dl fd brightnessctl ripgrep fzf bspwm zoxide exa docker-compose
     coreutils redshift-wlr geoclue2 spotify xfce.thunar neovim zathura
-    playerctl tmux rustup wlsunset bat
+    playerctl tmux wlsunset bat
   ];
 
   programs.zsh = {

@@ -78,7 +78,7 @@
   functions = ''
     fe() (
       IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"))
-      [[ -n "$files" ]] && ${EDITOR:-vim} "''${files[@]}"
+      [[ -n "$files" ]] && ''${EDITOR:-vim} "''${files[@]}"
     )
 
     fo() (
@@ -86,9 +86,10 @@
       key=$(head -1 <<< "$out")
       file=$(head -2 <<< "$out" | tail -1)
       if [ -n "$file" ]; then
-        [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+        [ "$key" = ctrl-o ] && open "$file" || ''${EDITOR:-vim} "$file"
       fi
     )
+
 
     function open_command() {
       local open_cmd
@@ -115,7 +116,7 @@
       autoload -U compinit zrecompile
       compinit -i -d "$cache/zcomp-$HOST"
 
-      for f in ${ZDOTDIR:-~}/.zshrc "$cache/zcomp-$HOST"; do
+      for f in ''${ZDOTDIR:-~}/.zshrc "$cache/zcomp-$HOST"; do
         zrecompile -p $f && command rm -f $f.zwc.old
       done
 
