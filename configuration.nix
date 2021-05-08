@@ -3,30 +3,31 @@
 {
   imports =
     [
-      ./hardware-configuration.nix
+      ./hosts/current
       ./scripts.nix
       ./packages.nix
     ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "meraxes"; # Define your hostname.
-  networking.networkmanager.enable = true;
+  i18n.defaultLocale = "en_US.UTF-8";
 
   time.timeZone = "Europe/Paris";
-
-  networking.useDHCP = false;
-  networking.interfaces.enp0s20f0u1.useDHCP = true;
-  networking.interfaces.wlp58s0.useDHCP = true;
 
   virtualisation.docker.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-  nix.package = pkgs.nixUnstable;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
+  nix = {
+    package = pkgs.nixUnstable;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+    autoOptimiseStore = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 10d";
+    };
+    trustedUsers = [ "root" "wadii" ];
+  };
 
   services.xserver.layout = "gb";
   services.xserver.xkbOptions = "eurosign:e,compose:rctrl";
@@ -48,17 +49,12 @@
     source-serif-pro
   ];
 
-  services.printing.enable = false;
-
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
   services.xserver.libinput.enable = true;
 
   users.users.wadii = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "docker" "video" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" "audio" "video" "networkmanager" ];
   };
 
   # This value determines the NixOS release from which the default

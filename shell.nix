@@ -1,4 +1,7 @@
 {
+  init = ''
+    export PATH="$PATH:$HOME/.local/bin"
+  '';
   alias = {
     sard  =  "mpv https://twitch.tv/sardoche --quiet >/dev/null &";
     kameto  =  "mpv https://www.twitch.tv/kamet0 --quiet >/dev/null &";
