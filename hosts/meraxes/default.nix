@@ -43,4 +43,6 @@
     enable = true;
     desktop = "sway";
   };
+
+  wadii.gui.work.enable = false;
 }
