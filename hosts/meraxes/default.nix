@@ -25,4 +25,6 @@
   };
 
   services.printing.enable = false;
+
+  wadii.langSupport.enable = true;
 }

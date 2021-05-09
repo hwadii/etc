@@ -1,6 +1,8 @@
 { options, config, lib, pkgs, ... }:
 {
-  imports = [];
+  imports = [
+    ./lang
+  ];
 
   options = {
       wadii.home = lib.mkOption {
