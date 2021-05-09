@@ -53,6 +53,13 @@
 
   services.xserver.libinput.enable = true;
 
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  services.openssh.enable = true;
+
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
   home-manager.users.wadii = lib.mkAliasDefinitions options.wadii.home;

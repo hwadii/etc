@@ -7,12 +7,7 @@ in
 {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    wget sxhkd sway wlroots wofi thunderbird firefox-wayland zsh docker
-    git youtube-dl fd brightnessctl fzf bspwm zoxide exa docker-compose
-    coreutils redshift-wlr geoclue2 spotify xfce.thunar neovim zathura
-    playerctl tmux wlsunset bat i3
-  ];
+  environment.systemPackages = with pkgs; [ sway wlroots ];
 
   programs.zsh = {
     enable = true;
@@ -38,24 +33,15 @@ in
       swayidle
       wl-clipboard
       mako
-      wofi
-      alacritty
-      imv
       grim
       slurp
       swaybg
       wf-recorder
       xdg-desktop-portal-wlr
+      redshift-wlr
+      geoclue2
 
       xwayland
     ];
   };
-
-  programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
-  services.openssh.enable = true;
 }
