@@ -1,11 +1,13 @@
-{ config, pkgs, ... }:
+{ options, config, pkgs, lib, ... }:
 
 {
   imports =
     [
       ./hosts/current
+      <home-manager/nixos>
       ./scripts.nix
       ./packages.nix
+      ./modules
     ];
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -50,6 +52,10 @@
   ];
 
   services.xserver.libinput.enable = true;
+
+  home-manager.useUserPackages = true;
+  home-manager.useGlobalPkgs = true;
+  home-manager.users.wadii = lib.mkAliasDefinitions options.wadii.home;
 
   users.users.wadii = {
     isNormalUser = true;

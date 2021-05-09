@@ -9,7 +9,7 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget sxhkd sway wlroots wofi thunderbird firefox-wayland zsh docker
-    git youtube-dl fd brightnessctl ripgrep fzf bspwm zoxide exa docker-compose
+    git youtube-dl fd brightnessctl fzf bspwm zoxide exa docker-compose
     coreutils redshift-wlr geoclue2 spotify xfce.thunar neovim zathura
     playerctl tmux wlsunset bat i3
   ];
