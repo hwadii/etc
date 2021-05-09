@@ -14,6 +14,24 @@ with lib; {
   };
 
   config = mkIf cfg.enable {
-    programs.sway.enable = true;
+    programs.sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+      extraPackages = with pkgs; [
+        swaylock
+        swayidle
+        wl-clipboard
+        mako
+        grim
+        slurp
+        swaybg
+        wf-recorder
+        xdg-desktop-portal-wlr
+        redshift-wlr
+        geoclue2
+
+        xwayland
+      ];
+    };
   };
 }
