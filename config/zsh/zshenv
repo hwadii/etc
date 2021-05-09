@@ -1,0 +1,28 @@
+skip_global_compinit=1
+export SWAYSOCK=$(find /run/user -name 'sway-ipc.*.sock' 2>/dev/null | head -n1)
+export CHROME_BIN="chromium-browser"
+export GPG_TTY=$(tty)
+export LESS="--RAW-CONTROL-CHARS --mouse -Ri"
+export XDG_CONFIG_HOME="$HOME/.config"
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
+export NVM_DIR="$HOME/.config/nvm"
+export RVM_DIR="$HOME/.rvm"
+export CARGO_HOME="$HOME/.local/cargo"
+export RUSTUP_HOME="$HOME/.local/rustup"
+export GEM_HOME="$RVM_DIR/gems/default"
+export GEM_PATH="$RVM_DIR/gems/default"
+path=(
+  $path
+  $XDG_LOCAL_BIN
+  $XDG_CONFIG_HOME/nvm/versions/node/v14.16.1/bin
+  $HOME/.rvm/bin
+  $HOME/.yarn/bin
+  $HOME/.config/yarn/global/node_modules/.bin
+  $XDG_LOCAL_BIN/git-extras
+  $CARGO_HOME/bin
+  $GEM_HOME/bin
+  $RVM_DIR/rubies/default/bin
+)
+[[ -f ~/.npmrc ]] && export $(grep npm ~/.npmrc | awk -F \"  '{print "CDL_NPM_TOKEN="$2}')
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
+export PASSWORD_STORE_DIR="$XDG_DATA_DIR/pass"

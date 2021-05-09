@@ -6,7 +6,6 @@
       ./hosts/current
       <home-manager/nixos>
       ./scripts.nix
-      ./packages.nix
       ./modules
     ];
 

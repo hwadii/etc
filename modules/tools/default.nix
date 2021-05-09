@@ -1,8 +1,13 @@
 { pkgs, ... }:
 {
+  imports = [
+    ./zsh.nix
+  ];
+
   wadii.home = {
     home.packages = with pkgs; [
       bat
+      tre-command
       docker-compose
       exa
       fd
@@ -11,7 +16,6 @@
       neovim
       tmux
       youtube-dl
-      zsh
     ];
   };
 }

@@ -1,0 +1,5 @@
+--theme="ansi"
+--italic-text=always
+--color=always
+--pager="less -x 2 -FR"
+--tabs 2

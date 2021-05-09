@@ -11,6 +11,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.cleanTmpDir = true;
+  boot.blacklistedKernelModules = [ "snd_pcsp" ];
 
   networking.useDHCP = false;
   networking.interfaces.enp0s20f0u1.useDHCP = true;
