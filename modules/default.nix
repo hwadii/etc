@@ -2,6 +2,9 @@
 {
   imports = [
     ./lang
+    ./desktop
+    ./gui
+    ./tools
   ];
 
   options = {

@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 {
   imports = [
+    <home-manager/nixos>
     ./hardware.nix
   ];
   networking.hostName = "meraxes"; # Define your hostname.
@@ -24,7 +25,22 @@
     '';
   };
 
+  environment.systemPackages = with pkgs; [
+    coreutils
+    git
+    killall
+    unzip
+    wget
+    vim
+    gnumake
+  ];
+
   services.printing.enable = false;
 
   wadii.langSupport.enable = true;
+
+  wadii.graphicalSession = {
+    enable = true;
+    desktop = "sway";
+  };
 }
