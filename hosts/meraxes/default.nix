@@ -4,7 +4,7 @@
     <home-manager/nixos>
     ./hardware.nix
   ];
-  networking.hostName = "meraxes"; # Define your hostname.
+  networking.hostName = "meraxes";
   networking.networkmanager.enable = true;
 
   boot.loader.systemd-boot.enable = true;
