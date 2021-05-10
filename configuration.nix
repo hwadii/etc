@@ -15,7 +15,9 @@
 
   virtualisation.docker.enable = true;
 
+  nixpkgs.overlays = import /etc/nixos/packages;
   nixpkgs.config.allowUnfree = true;
+
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''
