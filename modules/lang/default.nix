@@ -5,6 +5,7 @@ in
 with lib; {
   imports = [
     ./rust.nix
+    ./c.nix
   ];
 
   options = {
@@ -22,6 +23,7 @@ with lib; {
   config = mkIf cfg.enable {
     wadii.languages = {
       rust.enable = true;
+      c.enable = true;
     };
   };
 }
