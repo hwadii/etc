@@ -21,7 +21,6 @@ with lib; {
         sway-contrib.grimshot
         swaybg
         wf-recorder
-        xdg-desktop-portal-wlr
         redshift-wlr
         geoclue2
 
@@ -32,6 +31,11 @@ with lib; {
         export XDG_SESSION_TYPE=wayland
         systemctl --user import-environment
       '';
+    };
+
+    xdg.portal = {
+      enable = true;
+      extraPortals = with pkgs; [ xdg-desktop-portal-wlr ];
     };
   };
 }
