@@ -20,6 +20,8 @@ setopt auto_pushd
 
 stty -ixon -ixoff
 
+WORDCHARS=${WORDCHARS//[\/]}
+
 zstyle ':completion:*' menu select
 
 autoload -Uz bracketed-paste-magic
