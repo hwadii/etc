@@ -6,6 +6,7 @@ with lib; {
   imports = [
     ./sway.nix
     ./gtk.nix
+    ./alacritty.nix
   ];
 
   options = {
@@ -29,6 +30,7 @@ with lib; {
     wadii.desktop = {
       sway.enable = cfg.desktop == "sway";
       gtk.enable = true;
+      alacritty.enable = true;
     };
 
     wadii.home = {
