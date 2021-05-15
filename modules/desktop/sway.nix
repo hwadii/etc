@@ -32,6 +32,11 @@ with lib; {
 
         xwayland
       ];
+      extraSessionCommands = ''
+        export XDG_CURRENT_DESKTOP=sway
+        export XDG_SESSION_TYPE=wayland
+        systemctl --user import-environment
+      '';
     };
   };
 }

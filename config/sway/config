@@ -1,0 +1,251 @@
+# vim:set ft=conf
+
+set $mod Mod4
+set $alt Mod1
+set $left h
+set $down j
+set $up k
+set $right l
+set $term alacritty
+set $menu wofi -i --show drun | xargs swaymsg exec
+set $menuall wofi -i --show run | xargs swaymsg exec
+set $background /etc/nixos/artwork/Schale-grey.png
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
+set $font_family mono
+set $font_size 11
+set $gnome-schema org.gnome.desktop.interface
+
+set $nag exec swaynagmode
+swaynag_command \$nag -R
+
+font pango:$font_family, IPA Gothic 8
+
+
+output * bg $background fill
+
+exec swayidle -w \
+         timeout 600 'swaylock -f -c 000000' \
+         timeout 800 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+}
+
+default_orientation auto
+default_border pixel
+hide_edge_borders smart
+smart_borders on
+titlebar_padding 3 3
+
+input type:keyboard {
+    xkb_layout us
+    xkb_variant altgr-intl
+    repeat_delay 400
+    repeat_rate 30
+    xkb_options caps:escape
+}
+
+input "Razer Razer DeathAdder Chroma" {
+  accel_profile flat
+}
+
+bindsym $mod+Return exec $term
+
+bindsym $mod+w kill
+
+bindsym $mod+d exec $menu
+bindsym $mod+Shift+d exec $menuall
+
+floating_modifier $mod normal
+
+bindsym $mod+Shift+e exec wlogout
+bindsym $mod+Shift+x exec swaylock --daemonize
+
+bindsym $mod+Shift+s exec systemctl suspend
+
+bindsym $mod+Shift+r reload
+
+bindsym $mod+BackSpace exec makoctl dismiss
+
+bindsym Print exec grimshot --notify copy area
+bindsym Shift+Print exec grimshot --notify save area ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n
+bindsym Shift+Ctrl+Print exec grimshot --notify save active ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n
+bindsym $mod+Print exec grim -g "$(slurp)" - | swappy -f -
+bindsym $mod+Shift+g exec record-selection
+
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+bracketright workspace next
+bindsym $mod+bracketleft workspace prev
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+f fullscreen
+
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+a focus parent
+
+bindsym $mod+Shift+a focus child
+
+mode "nag" {
+  bindsym {
+    Ctrl+d    mode "default"
+
+    Ctrl+c    $nag --exit
+    q         $nag --exit
+    Escape    $nag --exit
+
+    Return    $nag --confirm
+
+    Tab       $nag --select prev
+    Shift+Tab $nag --select next
+
+    Left      $nag --select next
+    Right     $nag --select prev
+
+    Up        $nag --select next
+    Down      $nag --select prev
+  }
+}
+
+mode "resize" {
+    bindsym $left resize shrink width 20px
+    bindsym $down resize grow height 20px
+    bindsym $up resize shrink height 20px
+    bindsym $right resize grow width 20px
+
+    bindsym Left resize shrink width 20px
+    bindsym Down resize grow height 20px
+    bindsym Up resize shrink height 20px
+    bindsym Right resize grow width 20px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+bindsym $mod+n mode notifications
+mode notifications {
+    bindsym Escape mode default
+    bindsym Return exec makoctl invoke; exec makoctl dismiss; mode default
+    bindsym d exec makoctl dismiss; mode default
+    bindsym Shift+d exec makoctl dismiss -a; mode default
+}
+
+bindsym $mod+semicolon exec clipman pick -t wofi
+bindsym $alt+Tab exec env RUST_BACKTRACE=1 \
+    swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1
+bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \
+    swayr execute-swayr-command >> /tmp/swayr.log 2>&1
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
+bindsym $mod+Shift+equal exec pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindsym $mod+Shift+minus exec pactl set-sink-volume @DEFAULT_SINK@ -2%
+bindsym XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+bindsym $mod+minus exec playerctl previous
+bindsym $mod+equal exec playerctl next
+bindsym $mod+p exec playerctl play-pause
+
+set $blue #285577
+set $gray #282828
+set $red #900000
+
+client.focused $blue $blue #ffffff $blue $blue
+client.focused_inactive $gray $gray #ffffff $gray $gray
+focus_on_window_activation urgent
+
+bar {
+        status_command while etat; do sleep 1; done
+        position top
+        pango_markup disabled
+        font pango:IPAGothic 10, FontAwesome 9, $font_family 9
+        strip_workspace_numbers yes
+        colors {
+            background #1F1F1F
+            inactive_workspace $gray $gray #888888
+            active_workspace $gray $gray #ffffff
+            urgent_workspace $red $red #ffffff
+            focused_workspace $blue $blue #ffffff
+            urgent_workspace $red $red #ffffff
+        }
+}
+
+exec mako
+exec kanshi
+exec poweralertd
+exec nm-applet
+exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
+exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
+exec wl-paste -t text --watch clipman store
+exec gnome-keyring-daemon --start --components=gpg,ssh,secrets
+
+assign [class="^Slack$"] → workspace $ws7
+assign [app_id="mpv"] → workspace $ws5
+assign [title="^Spotify Premium$"] → workspace $ws6
+for_window [app_id="gnome-calculator"] floating enable
+for_window [app_id="nautilus"] floating enable
+for_window [title="Slack Call Minipanel"] floating enable
+for_window [title="Indicateur de partage"] floating enable
+for_window [title="À propos de Firefox Developer Edition"] floating enable
+for_window [title="Zoom Cloud Meetings"] floating enable
+for_window [shell="xwayland"] title_format "[X] %title"
+for_window [floating] border csd
+for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky enable, border none
+for_window [title="Firefox — Sharing Indicator"] kill
