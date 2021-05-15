@@ -50,6 +50,17 @@
     ipafont
     source-sans-pro
     source-serif-pro
+    font-awesome
+  ];
+
+  environment.systemPackages = with pkgs; [
+    coreutils
+    git
+    killall
+    unzip
+    wget
+    vim
+    gnumake
   ];
 
   services.xserver.libinput.enable = true;

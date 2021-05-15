@@ -26,16 +26,6 @@
     '';
   };
 
-  environment.systemPackages = with pkgs; [
-    coreutils
-    git
-    killall
-    unzip
-    wget
-    vim
-    gnumake
-  ];
-
   services.printing.enable = false;
 
   wadii.langSupport.enable = true;
