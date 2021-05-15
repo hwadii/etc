@@ -4,13 +4,7 @@ let
 in
 with lib; {
   options = {
-    wadii.desktop.sway = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = "Enable the Sway Wayland compositor.";
-      };
-    };
+    wadii.desktop.sway.enable = mkEnableOption "Enable the Sway Wayland compositor.";
   };
 
   config = mkIf cfg.enable {
@@ -24,6 +18,7 @@ with lib; {
         mako
         grim
         slurp
+        sway-contrib.grimshot
         swaybg
         wf-recorder
         xdg-desktop-portal-wlr
