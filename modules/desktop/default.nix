@@ -5,6 +5,7 @@ in
 with lib; {
   imports = [
     ./sway.nix
+    ./gtk.nix
   ];
 
   options = {
@@ -27,6 +28,7 @@ with lib; {
   config = mkIf cfg.enable {
     wadii.desktop = {
       sway.enable = cfg.desktop == "sway";
+      gtk.enable = true;
     };
 
     wadii.home = {
