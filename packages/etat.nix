@@ -7,10 +7,10 @@ rustPlatform.buildRustPackage rec {
     owner = "hwadii";
     repo = "etat";
     rev = "master";
-    sha256 = "grxfYtom1AG+Mf5/6LYd6xhffXhKtw4a9Vu64lOCzNY=";
+    sha256 = "f7YT4SDJSLBZvS2Psp35z74FmiuOmxwtxYEYkz1IdUY=";
   };
 
-  cargoSha256 = "TwLAFis4cGwQNagUrwmPUIVeANGTMyxFNBtIX7/Ltr4=";
+  cargoSha256 = "wak/telsDB9nKSSd4w79kwZ5vFLzBA4SqXhXGcTco9I=";
 
   buildInputs = with pkgs; [ dbus ];
   nativeBuildInputs = with pkgs; [ pkg-config ];
