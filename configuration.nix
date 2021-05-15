@@ -72,10 +72,9 @@
 
   services.openssh.enable = true;
 
-  home-manager.useUserPackages = true;
-  home-manager.useGlobalPkgs = true;
   home-manager.users.wadii = lib.mkAliasDefinitions options.wadii.home;
 
+  users.mutableUsers = false;
   users.users.wadii = {
     isNormalUser = true;
     shell = pkgs.zsh;
