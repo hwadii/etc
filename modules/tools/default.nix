@@ -2,6 +2,7 @@
 {
   imports = [
     ./zsh.nix
+    ./neovim.nix
   ];
 
   wadii.home = {
@@ -15,7 +16,6 @@
       fd
       fzf
       jq
-      neovim
       tmux
       youtube-dl
     ];
