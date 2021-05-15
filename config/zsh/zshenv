@@ -1,7 +1,9 @@
 skip_global_compinit=1
 export SWAYSOCK=$(find /run/user -name 'sway-ipc.*.sock' 2>/dev/null | head -n1)
 export CHROME_BIN="chromium-browser"
-export GPG_TTY=$(tty)
+export GPG_TTY="$(tty)"
+gpg-connect-agent /bye
+export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
 export LESS="--RAW-CONTROL-CHARS --mouse -Ri"
 export XDG_CONFIG_HOME="$HOME/.config"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
