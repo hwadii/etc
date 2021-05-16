@@ -8,6 +8,7 @@ with lib; {
     ./gtk.nix
     ./alacritty.nix
     ./mako.nix
+    ./dirs.nix
   ];
 
   options = {

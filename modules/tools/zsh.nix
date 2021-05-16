@@ -12,6 +12,10 @@ let
     url = "https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh";
     sha256 = "07p9mnidla6cfba7nzghj1pv3xq87favf802zhdr5wvwhqiqrzsl";
   };
+  fancyCtrlZ = builtins.fetchurl {
+    url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh";
+    sha256 = "1ssrvsb17kxhi1fa4dk1jyh6zrrn4mrq77dgfzjfksn441sm0s51";
+  };
 in {
   wadii.home = {
     programs.zsh = {
@@ -23,6 +27,7 @@ in {
       source "${gitLib}"
       source "${gitPlugin}"
       source "${gitPrompt}"
+      source "${fancyCtrlZ}"
       source "/etc/nixos/config/zsh/theme.zsh"
       '';
       envExtra = (builtins.readFile /etc/nixos/config/zsh/zshenv);
@@ -32,11 +37,6 @@ in {
         export MOZ_WEBRENDER=1;
       '';
       sessionVariables = {
-        XDG_CONFIG_HOME = "/home/wadii/.config";
-        XDG_DATA_HOME = "/home/wadii/.local/share";
-        XDG_CACHE_HOME = "/home/wadii/.cache";
-        XDG_LOCAL_BIN = "/home/wadii/.local/bin";
-
         EDITOR = "nvim";
         VISUAL = "nvim";
         BROWSER = "firefox";
