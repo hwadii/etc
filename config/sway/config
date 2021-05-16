@@ -191,7 +191,7 @@ mode notifications {
     bindsym Shift+d exec makoctl dismiss -a; mode default
 }
 
-bindsym $mod+semicolon exec clipman pick -t bemenu --tool-args="$bemenuargs"
+bindsym $mod+semicolon exec clipman pick -t bemenu --tool-args="$bemenuargs -i"
 bindsym $alt+Tab exec env RUST_BACKTRACE=1 \
     swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1
 bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \

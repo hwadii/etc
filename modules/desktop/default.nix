@@ -40,6 +40,7 @@ with lib; {
         alacritty
         bemenu
         brightnessctl
+        clipman
         i3
         mpv
         playerctl
