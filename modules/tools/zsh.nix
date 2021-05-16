@@ -115,15 +115,6 @@ in {
           };
         }
         {
-          name = "history-search-multi-word";
-          src = pkgs.fetchFromGitHub {
-            owner = "zdharma";
-            repo = "history-search-multi-word";
-            rev = "master";
-            sha256 = "/c6unIAoe5W0rnfskwBFHi5qD5IiKqx/9824xdOOEmw=";
-          };
-        }
-        {
           name = "zsh-history-substring-search";
           src = pkgs.fetchFromGitHub {
             owner = "zsh-users";

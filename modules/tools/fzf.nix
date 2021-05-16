@@ -14,7 +14,7 @@
       fileWidgetOptions = [ "--select-1" "--exit-0" "--preview 'head {}'" ];
       changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d --hidden --follow --exclude '.git' --exclude 'node_modules'";
       changeDirWidgetOptions = [ "--preview '${pkgs.tre-command}/bin/tre {} | head -200'" ];
-      tmux.enableShellIntegration = true;
+      tmux.enableShellIntegration = false;
       enableZshIntegration = true;
     };
   };
