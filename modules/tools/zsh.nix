@@ -22,6 +22,9 @@ in {
       enable = true;
       history.size = 999999;
       defaultKeymap = "emacs";
+      initExtraBeforeCompInit = ''
+        fpath+="$ZDOTDIR/completions"
+      '';
       initExtra = (builtins.readFile /etc/nixos/config/zsh/zshrc) +
       ''
       source "${gitLib}"

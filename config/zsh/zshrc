@@ -58,8 +58,7 @@ function zreload() {
   [[ -n "$SHELL" ]] && exec ${SHELL#-} || exec zsh
 }
 
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-# source $XDG_CONFIG_HOME/zsh/persent.zsh-theme
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"

@@ -6,6 +6,7 @@ gpg-connect-agent /bye
 export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
 export LESS="--RAW-CONTROL-CHARS --mouse -Ri"
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_LOCAL_BIN="/home/wadii/.local/bin"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
 export NVM_DIR="$HOME/.config/nvm"
 export RVM_DIR="$HOME/.rvm"

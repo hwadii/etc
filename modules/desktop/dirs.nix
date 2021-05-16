@@ -18,7 +18,6 @@
       XDG_CONFIG_HOME = "/home/wadii/.config";
       XDG_DATA_HOME = "/home/wadii/.local/share";
       XDG_CACHE_HOME = "/home/wadii/.cache";
-      XDG_LOCAL_BIN = "/home/wadii/.local/bin";
     };
   };
 }
