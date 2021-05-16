@@ -71,19 +71,13 @@
 
   services.xserver.libinput.enable = true;
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryFlavor = "curses";
-  };
-
-  services.openssh.enable = true;
-
   home-manager.users.wadii = lib.mkAliasDefinitions options.wadii.home;
 
   users.mutableUsers = false;
   users.users.wadii = {
     isNormalUser = true;
+    home = "/home/wadii";
+    description = "Wadii Hajji";
     shell = pkgs.zsh;
     extraGroups = [ "wheel" "docker" "audio" "video" "networkmanager" ];
   };

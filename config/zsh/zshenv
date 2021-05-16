@@ -1,9 +1,6 @@
 skip_global_compinit=1
 export SWAYSOCK=$(find /run/user -name 'sway-ipc.*.sock' 2>/dev/null | head -n1)
 export CHROME_BIN="chromium-browser"
-export GPG_TTY="$(tty)"
-gpg-connect-agent /bye
-export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
 export LESS="--RAW-CONTROL-CHARS --mouse -Ri"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_LOCAL_BIN="/home/wadii/.local/bin"
@@ -28,3 +25,4 @@ path=(
 )
 [[ -f ~/.npmrc ]] && export $(grep npm ~/.npmrc | awk -F \"  '{print "CDL_NPM_TOKEN="$2}')
 export PASSWORD_STORE_DIR="$HOME/.local/share/pass"
+export $(gnome-keyring-daemon --start --components ssh)

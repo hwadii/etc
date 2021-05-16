@@ -4,6 +4,7 @@
     ./zsh.nix
     ./neovim.nix
     ./fzf.nix
+    ./gpg.nix
   ];
 
   wadii.home = {
