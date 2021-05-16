@@ -32,8 +32,6 @@ with lib; {
     wadii.desktop = {
       sway.enable = cfg.desktop == "sway";
       gtk.enable = true;
-      mako.enable = true;
-      alacritty.enable = true;
     };
 
     wadii.home = {
