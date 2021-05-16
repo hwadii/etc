@@ -16,6 +16,7 @@ with lib; {
         swayidle
         wl-clipboard
         mako
+        kanshi
         grim
         slurp
         sway-contrib.grimshot

@@ -9,6 +9,7 @@ with lib; {
     ./alacritty.nix
     ./mako.nix
     ./dirs.nix
+    ./kanshi.nix
   ];
 
   options = {
