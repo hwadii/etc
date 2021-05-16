@@ -32,11 +32,17 @@
     trustedUsers = [ "root" "wadii" ];
   };
 
-  services.xserver.layout = "gb";
-  services.xserver.xkbOptions = "eurosign:e,compose:rctrl";
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.wayland = true;
+  services.xserver = {
+    enable = true;
+    layout = "gb";
+    xkbOptions = "eurosign:e,compose:rctrl";
+    displayManager.gdm = {
+      enable = true;
+      wayland = true;
+    };
+  };
+
+  services.gnome.gnome-keyring.enable = true;
 
   fonts.fontconfig.enable = true;
 
