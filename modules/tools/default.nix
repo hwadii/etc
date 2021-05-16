@@ -20,6 +20,7 @@
       wadii.etat
       wadii.smart-pwd
       youtube-dl
+      zoxide
     ];
   };
 }

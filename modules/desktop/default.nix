@@ -46,7 +46,7 @@ with lib; {
         playerctl
         wlsunset
         wofi
-        zoxide
+        ibus-engines.typing-booster
       ];
 
       # convert those into nix files
