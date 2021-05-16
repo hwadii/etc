@@ -39,7 +39,6 @@ nnoremap <Leader>c <cmd>Telescope git_commits<cr>
 nnoremap <Leader>o <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <Leader>r <cmd>Telescope lsp_references<cr>
 nnoremap <C-s> <cmd>Telescope current_buffer_fuzzy_find<cr>
-nnoremap - <cmd>Telescope file_browser<cr>
 
 " Ledger
 nnoremap <silent> glf :<C-U>%LedgerAlign<CR>

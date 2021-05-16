@@ -7,14 +7,13 @@ return packer.startup(function()
 
   use 'AndrewRadev/splitjoin.vim'
   use 'airblade/vim-rooter'
-  use 'junegunn/seoul256.vim'
   use 'axvr/org.vim'
   use 'jiangmiao/auto-pairs'
   use 'lambdalisue/gina.vim'
   use 'ledger/vim-ledger'
   use 'neovim/nvim-lspconfig'
+  use 'justinmk/vim-dirvish'
   use { 'TimUntersberger/neogit', config = function() require('neogit').setup() end }
-  use 'savq/melange'
   use {
     'norcalli/nvim-colorizer.lua',
     config = function() require('colorizer').setup({}, { names = false }) end,
