@@ -1,0 +1,173 @@
+set $mod Mod4
+set $alt Mod1
+set $menu wofi --normal-window --show drun
+set $menuall wofi --normal-window --show run
+set $bemenu bemenu -p '>' --hf '#89ddff' --tf '#89ddff'
+set $bemenurun bemenu-run -p '>' --hf '#89ddff' --tf '#89ddff'
+set $font_family mono
+
+font pango:$font_family 9
+
+default_orientation auto
+default_border pixel
+hide_edge_borders smart
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
+bindsym $mod+Shift+equal exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindsym $mod+Shift+minus exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+bindsym $mod+minus exec playerctl previous
+bindsym $mod+equal exec playerctl next
+bindsym $mod+p exec playerctl play-pause
+
+bindsym $mod+Print exec maim -s ~/$(date +"Screenshot-%F-%T.png")
+bindsym Print exec maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym $mod+shift+Print exec maim -i $(xdotool getactivewindow) -s ~/$(date +'Screenshot-%F-%T.png')
+
+floating_modifier $mod
+
+bindsym $mod+Return exec alacritty
+
+bindsym $mod+w kill
+
+bindsym $mod+d exec $bemenurun
+bindsym $mod+Shift+d exec $menuall
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+bracketright workspace next
+bindsym $mod+bracketleft workspace prev
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+b split h
+
+bindsym $mod+v split v
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+Tab workspace back_and_forth
+
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+q focus parent
+
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+Shift+s exec systemctl suspend
+mode "resize" {
+
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym m resize grow width 10 px or 10 ppt
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+set $blue #285577
+set $gray #282828
+set $red #900000
+
+client.focused $blue $blue #ffffff $blue $blue
+client.focused_inactive $gray $gray #ffffff $gray $gray
+focus_on_window_activation urgent
+
+bar {
+        status_command etat
+        position top
+        font pango:IPAGothic 10, FontAwesome 9, $font_family 9
+        strip_workspace_numbers yes
+        colors {
+            background #1F1F1F
+            inactive_workspace $gray $gray #888888
+            active_workspace $gray $gray #ffffff
+            urgent_workspace $red $red #ffffff
+            focused_workspace $blue $blue #ffffff
+            urgent_workspace $red $red #ffffff
+        }
+}
+exec_always "setxkbmap -layout us -variant altgr-intl -option compose:ralt -option caps:escape"
+exec "redshift -P -O 5500:3000 -m randr:screen=0,1"
+exec_always "xset r rate 400 30"
+exec_always "nitrogen --set-scaled ~/artwork/Schale-grey.png"
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
+
+
+assign [class="^Slack$"] → workspace $ws7
+assign [title="^Spotify Premium$"] → workspace $ws6
+for_window [title="Slack Call Minipanel"] floating enable
+for_window [title="Firefox - Sharing Indicator"] floating enable
+for_window [floating] border csd
+for_window [title="Picture-in-Picture"] floating enable, sticky enable, border none
+for_window [title="Firefox — Sharing Indicator"] kill

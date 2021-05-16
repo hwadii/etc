@@ -48,6 +48,15 @@ with lib; {
         wofi
         zoxide
       ];
+
+      # convert those into nix files
+      xdg.configFile."bat/config".source = /etc/nixos/config/bat/config;
+      xdg.configFile."newsboat/config".source = /etc/nixos/config/newsboat/config;
+      xdg.configFile."newsboat/urls".source = /etc/nixos/config/newsboat/urls;
+      xdg.configFile."ripgrep/ripgreprc".source = /etc/nixos/config/ripgrep/ripgreprc;
+      xdg.configFile."sway/config".source = /etc/nixos/config/sway/config;
+      xdg.configFile."swaylock/config".source = /etc/nixos/config/swaylock/config;
+      xdg.configFile."i3/config".source = /etc/nixos/config/i3/config;
     };
   };
 }
