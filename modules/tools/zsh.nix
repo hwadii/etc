@@ -24,6 +24,7 @@ in {
       defaultKeymap = "emacs";
       initExtraBeforeCompInit = ''
         fpath+="$ZDOTDIR/completions"
+        fpath+="$HOME/.nix-profile/share/zsh/site-functions"
       '';
       initExtra = (builtins.readFile /etc/nixos/config/zsh/zshrc) +
       ''
