@@ -38,6 +38,7 @@ with lib; {
     wadii.home = {
       home.packages = with pkgs; [
         alacritty
+        bemenu
         brightnessctl
         i3
         mpv
