@@ -206,6 +206,8 @@ bindsym $mod+minus exec playerctl previous
 bindsym $mod+equal exec playerctl next
 bindsym $mod+p exec playerctl play-pause
 
+seat seat0 xcursor_theme "Adwaita"
+
 set $blue #285577
 set $gray #282828
 set $red #900000
