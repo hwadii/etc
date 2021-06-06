@@ -53,16 +53,23 @@ hide_edge_borders smart
 smart_borders on
 titlebar_padding 3 3
 
-input type:keyboard {
-    xkb_layout us
-    xkb_variant altgr-intl
-    repeat_delay 400
-    repeat_rate 30
-    xkb_options caps:escape
+input "1:1:AT_Translated_Set_2_keyboard" {
+  xkb_layout us
+  xkb_variant altgr-intl
+  repeat_delay 400
+  repeat_rate 30
+  xkb_options caps:escape
 }
 
-input "Razer Razer DeathAdder Chroma" {
-  accel_profile flat
+input "1278:32:PFU_Limited_HHKB-Classic" {
+  xkb_layout us
+  xkb_variant altgr-intl
+  repeat_delay 400
+  repeat_rate 30
+}
+
+input "1133:49295:Logitech_G403_HERO_Gaming_Mouse" {
+  pointer_accel -0.4
 }
 
 bindsym $mod+Return exec $term
@@ -80,8 +87,6 @@ bindsym $mod+Shift+x exec swaylock --daemonize
 bindsym $mod+Shift+s exec systemctl suspend
 
 bindsym $mod+Shift+r reload
-
-bindsym $mod+BackSpace exec makoctl dismiss
 
 bindsym Print exec grimshot --notify copy area
 bindsym Shift+Print exec grimshot --notify save area ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n
@@ -189,9 +194,10 @@ mode notifications {
     bindsym Return exec makoctl invoke; exec makoctl dismiss; mode default
     bindsym d exec makoctl dismiss; mode default
     bindsym Shift+d exec makoctl dismiss -a; mode default
+    bindsym s exec makoctl restore
 }
 
-bindsym $mod+semicolon exec clipman pick -t bemenu --tool-args="$bemenuargs -i"
+bindsym $mod+semicolon exec clipman pick -t bemenu --tool-args="$bemenuargs"
 bindsym $alt+Tab exec env RUST_BACKTRACE=1 \
     swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1
 bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \
@@ -219,8 +225,8 @@ focus_on_window_activation urgent
 bar {
         status_command etat
         position top
-        pango_markup disabled
         font pango:IPAGothic 10, FontAwesome 9, $font_family 9
+        separator_symbol ""
         strip_workspace_numbers yes
         colors {
             background #1F1F1F
@@ -233,12 +239,14 @@ bar {
 }
 
 exec mako
-exec kanshi
+exec_always kanshi
 exec poweralertd
 exec nm-applet
 exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
 exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
 exec wl-paste -t text --watch clipman store
+exec gnome-keyring-daemon --start --components=gpg,ssh,secrets
+exec "systemctl --user import-environment"
 
 assign [class="^Slack$"] → workspace $ws7
 assign [app_id="mpv"] → workspace $ws5

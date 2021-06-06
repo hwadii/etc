@@ -6,15 +6,9 @@ inoremap <silent> <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <silent> <A-j> :m '>+1<CR>gv=gv
 vnoremap <silent> <A-k> :m '<-2<CR>gv=gv
 inoremap <silent><C-d> <Del>
-inoremap <C-c> <esc>
 nnoremap <silent><esc> :noh<return><esc>
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
 map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <leader><leader> <c-^>
-nnoremap <silent> <C-/> :set hlsearch!<cr>
+nnoremap <C-/> :set hlsearch!<cr>
 nmap <A-[> :vertical resize -5<cr>
 nmap <A-]> :vertical resize +5<cr>
 
@@ -39,9 +33,6 @@ nnoremap <Leader>c <cmd>Telescope git_commits<cr>
 nnoremap <Leader>o <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <Leader>r <cmd>Telescope lsp_references<cr>
 nnoremap <C-s> <cmd>Telescope current_buffer_fuzzy_find<cr>
-
-" Ledger
-nnoremap <silent> glf :<C-U>%LedgerAlign<CR>
 
 " tabs
 nnoremap <silent> [t gT
@@ -68,13 +59,6 @@ nnoremap <localleader>o  <cmd>lua vim.lsp.buf.document_symbol()<cr>
 nnoremap <localleader>d  <cmd>lua vim.lsp.diagnostic.get_all()<cr>
 nnoremap <localleader>i  <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
 
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
@@ -83,11 +67,3 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
 
 " term
 tnoremap <M-[> <C-\><C-n>
-
-" vsnip
-" imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-" smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-" imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-" smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-" imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-" smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
