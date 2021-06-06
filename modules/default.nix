@@ -5,6 +5,7 @@
     ./desktop
     ./gui
     ./tools
+    ./system
   ];
 
   options = {

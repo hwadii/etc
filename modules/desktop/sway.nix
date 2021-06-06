@@ -21,6 +21,7 @@ with lib; {
         slurp
         sway-contrib.grimshot
         swaybg
+        poweralertd
         wf-recorder
         redshift-wlr
         geoclue2
